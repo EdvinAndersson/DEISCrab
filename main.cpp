@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#include<unistd.h>
+
 #include "motorhatlib/adafruitmotorhat.h"
 
 int main() {
@@ -7,19 +9,24 @@ int main() {
 
     AdafruitMotorHAT hat;
 
-    std::shared_ptr<AdafruitDCMotor> motor = hat.getMotor(1);
+    std::shared_ptr<AdafruitDCMotor> motor1 = hat.getMotor(1);
+    std::shared_ptr<AdafruitDCMotor> motor2 = hat.getMotor(4);
 
-    if (!motor) {
-        printf("Couldn't get the motor...\n");
+    if (!motor1 | !motor2) {
+        printf("Couldn't get the motors...\n");
         return 0;
     }
 
-    motor->setSpeed (255);
+    motor1->setSpeed (0.2 * 255);
+    motor2->setSpeed (0.2 * 255);
 
-    motor->run (AdafruitDCMotor::kForward);
+    motor1->run(AdafruitDCMotor::kBackward);
+    motor2->run(AdafruitDCMotor::kForward);
+    sleep(2);
 
     // release the motor after use
-    motor->run (AdafruitDCMotor::kRelease);
+    motor1->run(AdafruitDCMotor::kRelease);
+    motor2->run(AdafruitDCMotor::kRelease);
 
     return 0;
 }

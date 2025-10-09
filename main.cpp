@@ -17,10 +17,10 @@ int main() {
         return 0;
     }
 
-    motor1->setSpeed (0.2 * 255);
-    motor2->setSpeed (0.2 * 255);
-
-    motor1->run(AdafruitDCMotor::kBackward);
+    motor1->setSpeed (0.1 * 255);
+    motor2->setSpeed (0.1 * 255);
+// One of the motors is wired backwards
+    motor1->run(AdafruitDCMotor::kForward);
     motor2->run(AdafruitDCMotor::kForward);
     sleep(2);
 

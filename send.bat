@@ -1,1 +1,1 @@
-rsync -au ./ group3@172.20.10.7:/home/group3/dev/project/crab
+rsync -au ./ group3@192.168.1.9:/home/group3/dev/project/crab

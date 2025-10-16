@@ -1,22 +1,25 @@
-#all:
-#	g++ -std=c++11 -o crab.out main.cpp motorhatlib/*.cpp
-
-# Compiler and options
+# Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -Wextra -O2
+CXXFLAGS = -std=c++11 -I/usr/local/include -Wall -Wextra
+LDFLAGS = -lpigpio -lpthread -L/usr/local/lib
 
-# Source and output
-SRC_MAIN = main.cpp
+# Sources
+SRC_MAIN = main.cpp encoders.cpp
 SRC_LIB = $(wildcard motorhatlib/*.cpp)
-OBJ = $(SRC_MAIN:.cpp=.o) $(SRC_LIB:.cpp=.o)
+SRC = $(SRC_MAIN) $(SRC_LIB)
+
+# Object files
+OBJ = $(SRC:.cpp=.o)
+
+# Target executable
 TARGET = crab.out
 
 # Default rule
 all: $(TARGET)
 
-# Link all object files into final executable
+# Link object files
 $(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 # Compile .cpp → .o
 %.o: %.cpp

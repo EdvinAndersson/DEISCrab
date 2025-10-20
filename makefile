@@ -1,11 +1,11 @@
 # Compiler and flags
 CXX = g++
 CXXFLAGS = -std=c++11 -I/usr/local/include -Wall -Wextra
-LDFLAGS = -lpigpio -lpthread -L/usr/local/lib
+LDFLAGS = -lpigpio -lpthread -L/usr/local/lib 
 
 # Sources
 SRC_MAIN = main.cpp encoders.cpp
-SRC_LIB = $(wildcard motorhatlib/*.cpp)
+SRC_LIB = $(wildcard motorhatlib/*.cpp) 
 SRC = $(SRC_MAIN) $(SRC_LIB)
 
 # Object files
